@@ -5,4 +5,4 @@ CREATE TABLE notes (
     content text NOT NULL,
     updated date NOT NULL,
     PRIMARY KEY (id)
-)
+);
