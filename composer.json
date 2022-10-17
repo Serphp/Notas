@@ -1,0 +1,15 @@
+{
+    "name": "serph/notas",
+    "autoload": {
+        "psr-4": {
+            "Serph\\Notas\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bryan Rodriguez",
+            "email": "Serphp@hotmail.com"
+        }
+    ],
+    "require": {}
+}
