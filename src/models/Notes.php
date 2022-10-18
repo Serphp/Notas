@@ -1,6 +1,8 @@
 <?php
 
 namespace Serph\Notas\models;
+
+use PDO;
 use Serph\Notas\lib\Database;
 
 class Note extends Database{
@@ -31,6 +33,15 @@ class Note extends Database{
         $db = new Database();
         $query = $db->connect()->prepare('SELECT * FROM notes WHERE uuid = :uuid');
         $query->execute(['uuid' => $uuid]);
+
+        $note = note::createFromArray($query->fetch(PDO::FETCH_ASSOC));
+        return $note;
+    }
+
+    public static function createFromArray($array):Note{
+        $note = new Note($array['title'], $array['content']);
+        $note->uuid = $array['uuid'];
+        return $note;
     }
 
     public function getUUID(){
