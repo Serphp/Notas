@@ -1,3 +1,16 @@
+<?php
+    namespace Notas\views\components;
+
+    use PDO;
+    use Serph\Notas\lib\Database;
+    use Serph\Notas\models\note;
+    
+    //Connection to database
+    $notes = [];
+    $db = new Database();
+    $query = $db->connect()->query('SELECT * FROM notas');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,5 +21,13 @@
 </head>
 <body>
     <h1> Hola </h1>
+    <p> Esta es la pagina de inicio </p>
+
+<?php
+    foreach($note as $note){
+        echo "<div>{$note->title}</div>";
+    }
+    
+?>
 </body>
 </html>
