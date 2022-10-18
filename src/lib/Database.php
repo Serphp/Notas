@@ -9,7 +9,7 @@ class Database{
     private string $host;
     private string $db;
     private string $user;
-    //private string $password;
+    private string $password;
     private string $charset;
 
     public function __construct()
@@ -17,7 +17,7 @@ class Database{
         $this->host = 'localhost';
         $this->db = 'notas';
         $this->user = 'root';
-        //$this->password = ''; //problemas con mysql
+        $this->password = 'password';
         $this->charset = 'utf8mb4';
     }
 
@@ -28,10 +28,10 @@ class Database{
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_EMULATE_PREPARES => false,
             ];
-            $pdo = new PDO($connection, $this->user); //, $this->password, $options
+            $pdo = new PDO($connection, $this->user, $this->password, $options);
             return $pdo;
-        }catch (PDOException $th){
-            throw $th;
+        } catch (PDOException $e) {
+            print_r('Error connection: ' . $e->getMessage());
         }
     }
 }
