@@ -38,11 +38,34 @@ class Note extends Database{
         return $note;
     }
 
-    public static function createFromArray($array):Note{
+    public static function createFromArray($array):note{
         $note = new Note($array['title'], $array['content']);
         $note->uuid = $array['uuid'];
         return $note;
     }
+
+    public static function getAll(){
+        $notes = [];
+        $db = new Database();
+        $query = $db->connect()->prepare('SELECT * FROM notes');
+
+        while($row = $query->fetch(PDO::FETCH_ASSOC)){
+            $note = Note::createFromArray($row);
+            array_push($notes, $note);
+        }
+        return $notes;
+    }
+
+    static function getNote($id)
+    {
+        $db = new Database();
+        $query = $db->connect()->prepare("SELECT * FROM notas WHERE uuid = :id");
+        $query->execute(['id' => $id]);
+
+        return Note::createFromArray($query->fetch(PDO::FETCH_ASSOC));
+    }
+
+
 
     public function getUUID(){
         return $this->uuid;
@@ -55,6 +78,10 @@ class Note extends Database{
     }
     public function getContent(): string{
         return $this->content;
+    }
+    public function getTitle(): string
+    {
+        return $this->title;
     }
     public function setContent($value){
         $this->content = $value;

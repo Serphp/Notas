@@ -30,6 +30,7 @@ class Database{
             ];
             $pdo = new PDO($connection, $this->user, $this->password, $options);
             return $pdo;
+            //Show error if connection fails and not sample page not found.
         } catch (PDOException $e) {
             print_r('Error connection: ' . $e->getMessage());
         }

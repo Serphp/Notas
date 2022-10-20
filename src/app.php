@@ -1,9 +1,12 @@
 <?php 
-
-if(isset($_GET['view'])){
-    $view = $_GET['view'];
-    require 'src/views/' . $view . '.php';
-}else{require 'src/views/home.php';} 
+    if(isset($_GET['view'])){
+        $view = $_GET['view'];
+        require 'src/views/' . $view . '.php';
+    }else
+    {
+        require 'src/views/home.php';
+    } 
+    
 //END OF app.php
 
 
@@ -13,10 +16,12 @@ if(isset($_GET['view'])){
         require 'views/home.php';
     }elseif($view == 'about'){
         require 'views/about.php';
-    }elseif($view == 'contact'){
-        require 'views/contact.php';
+    }elseif($view == 'create'){
+        require 'views/create.php';
     }else{
-        require 'views/404.php';
-    }*/
+        require 'src/views/home.php';
+    }
+
+    */
     
 ?>

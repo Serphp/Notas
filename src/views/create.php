@@ -1,16 +1,18 @@
 <?php
 use Serph\Notas\models\Note;
+
 if(count($_POST) > 0){
     $title = isset($_POST['title']) ?? '';
     $content = isset($_POST['content']) ?? '';
 
-    //$note = new Note($title, $content);
-    //$note->save();
-
-    $note = new Note($_POST['title'], $_POST['content']);
+    //$note = new Note($_POST['title'], $_POST['content']);
+    $note = new Note($title, $content);
     $note->save();
-    header('Location: /');
+    //header('Location: /');
+    
+
 }
+
 ?>
 
 <!DOCTYPE html>
