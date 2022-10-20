@@ -1,8 +1,11 @@
 <?php
-use Serph\Notas\models\Notas;
-use Serph\Notas\models\Note;
 
-    $notes = Note::getAll();
+use Serph\Notas\models\Note;
+if(isset($_GET['id'])){
+    $note = Note::getById($_GET['id']);
+    if($note == null){
+        header('Location: http://localhost:8000/notas?view=home');
+    }
 ?>
 
 <!DOCTYPE html> 
@@ -15,12 +18,11 @@ use Serph\Notas\models\Note;
 </head>
 <body>
     <h1> VIENDO UNA NOTA </h1>
-    <?php
-    foreach ($notes as $note) {
-        echo "<h2>{$note->getTitle}</h2>";
-        echo $note->title;
-        echo $note->content;
-    }
-    ?>
+    //show note 
+    <form action="#" method="POST">
+        <input type="text" name="title" placeholder="Title" value="<?php echo $note->getTitle();">
+        <textarea name="content" id="" cols="30" rows="10" placeholder="Content"></textarea>
+        
+
 </body>
 </html>

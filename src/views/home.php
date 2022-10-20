@@ -4,7 +4,7 @@
     use PDO;
     use Serph\Notas\lib\Database;
     use Serph\Notas\models\note;
-    
+    $notes = Note::getAll();
     //Connection to database
     $notes = [];
     $db = new Database();
@@ -20,9 +20,14 @@
     <title>Hola</title>
 </head>
 <body>
-    <h1> Hola </h1>
-    <p> Esta es la pagina de inicio </p>
+    //GO note
+    <a href="?view=view&id=<?php echo $note->getUUID(); ?>">
+    <div class="note-vista"> 
+        //show note
+        <div class = "title"><?php echo $note->getTitle() ?></div>
+    </div></a>
 
+    //structure of the note
 <?php
     foreach($note as $note){
         echo "<div>{$note->title}</div>";
